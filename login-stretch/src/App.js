@@ -1,12 +1,30 @@
 import React from "react";
+import {
+    BrowserRouter as Router,
+    Route,
+    Link,
+    Switch,
+} from "../node_modules/react-router-dom";
 import { LoginForm } from "./components/login_form";
-import "./App.css";
+import { RegisterForm } from "./components/register_form";
+import UsersList from "./components/users";
+import PrivateRoute from "./components/privateRoute";
 
 function App() {
     return (
-        <div className="App">
-            <LoginForm />
-        </div>
+        <Router>
+            <div className="App">
+                <Link to="/login">Login</Link>
+                <Link to="/uesrs">User List</Link>
+                <RegisterForm />
+
+                <Switch>
+                    <PrivateRoute exact path="/users" component={UsersList} />
+                    <Route path="/login" component={LoginForm} />
+                    <Route path="/register" component={RegisterForm} />
+                </Switch>
+            </div>
+        </Router>
     );
 }
 
