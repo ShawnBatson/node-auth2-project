@@ -23,7 +23,7 @@ export const LoginForm = (props) => {
     const login = (event) => {
         event.preventDefault();
         axiosWithAuth()
-            .post("./auth/login", userInfo.credentials)
+            .post("/auth/login", userInfo.credentials)
             .then((res) => {
                 console.log("this is in the login event", res);
                 localStorage.setItem("token", res.data.payload);
