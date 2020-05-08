@@ -16,7 +16,6 @@ function App() {
             <div className="App">
                 <Link to="/login">Login</Link>
                 <Link to="/uesrs">User List</Link>
-                <RegisterForm />
 
                 <Switch>
                     <PrivateRoute exact path="/users" component={UsersList} />

@@ -19,9 +19,9 @@ export const RegisterForm = (props) => {
     const register = (event) => {
         event.preventDefault();
         axiosWithAuth()
-            .post("/register", registration)
+            .post("/auth/register", registration)
             .then((res) => {
-                console.log("this is in the registration event", res);
+                console.log("this is in the registration event", res.data);
                 localStorage.setItem("token", res.data.payload);
                 props.history.push("/users");
             })
