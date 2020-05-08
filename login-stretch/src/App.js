@@ -1,9 +1,13 @@
 import React from "react";
-import logo from "./logo.svg";
+import { LoginForm } from "./components/login_form";
 import "./App.css";
 
 function App() {
-    return <div className="App"></div>;
+    return (
+        <div className="App">
+            <LoginForm />
+        </div>
+    );
 }
 
 export default App;
