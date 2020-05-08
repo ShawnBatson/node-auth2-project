@@ -50,7 +50,7 @@ router.post("/login", async (req, res, next) => {
             userRole: "admin"
         };
 
-        token = jwt.sign(tokenPayload, process.env.JWT_SECRET);
+        token = jwt.sign(tokenPayload, process.env.JWT_SECRET, { expiresIn: "24h"});
 
         res.cookie("token", token);
 
