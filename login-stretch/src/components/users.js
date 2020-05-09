@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { useHistory } from "react-router-dom";
 import "../App.css";
 
 const UsersList = () => {
+    const history = useHistory();
+
     const [users, setUsers] = useState([]);
     useEffect(() => {
         axiosWithAuth()
@@ -16,9 +19,9 @@ const UsersList = () => {
             });
     }, []);
 
-    const logout = (props) => {
+    const logout = () => {
         localStorage.removeItem("token");
-        props.history.push("/login");
+        history.push("/login");
     };
 
     return (
