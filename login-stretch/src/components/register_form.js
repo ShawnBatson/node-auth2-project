@@ -20,7 +20,7 @@ export const RegisterForm = (props) => {
     const register = (event) => {
         event.preventDefault();
         axiosWithAuth()
-            .post("/auth/register", registration)
+            .post("/auth/register", registration, { withCredentials: true }) //STUDY THIS X3X
             .then((res) => {
                 console.log("this is in the registration event", res);
                 localStorage.setItem("token", res.data.token);

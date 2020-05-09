@@ -10,7 +10,7 @@ router.get("/", restrict("admin"), async (req, res, next) => {
     try {
         res.json(await Users.find());
     } catch (err) {
-        next(err);
+        next("", err);
     }
 });
 
