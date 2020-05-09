@@ -7,6 +7,7 @@ import {
 } from "../node_modules/react-router-dom";
 import { LoginForm } from "./components/login_form";
 import { RegisterForm } from "./components/register_form";
+import { withCookies } from "react-cookie";
 import UsersList from "./components/users";
 import PrivateRoute from "./components/privateRoute";
 
@@ -15,7 +16,9 @@ function App() {
         <Router>
             <div className="App">
                 <Link to="/login">Login</Link>
-                <Link to="/users">User List</Link>
+                <Link to="/users" cookies="this.props.cookies">
+                    User List
+                </Link>
                 <Link to="/register">Register</Link>
 
                 <Switch>
@@ -29,4 +32,4 @@ function App() {
     );
 }
 
-export default App;
+export default withCookies(App);

@@ -10,8 +10,11 @@ const UsersList = () => {
             .then((res) => {
                 console.log("this is in users", res.data);
                 setUsers(res.data);
+            })
+            .catch((err) => {
+                console.log("error in usersList", err);
             });
-    });
+    }, []);
 
     const logout = (props) => {
         localStorage.removeItem("token");
@@ -22,13 +25,15 @@ const UsersList = () => {
         <div>
             <div className="userCard">
                 {users.map((user) => (
-                    <div className="individualCard">
-                        <h1 className="userCardWriting">{user.name}</h1>
-                        <h2 className="userCardWriting">{user.department}</h2>
-                    </div>
+                    // <div className="individualCard">
+                    //     <h1 className="userCardWriting">{user.username}</h1>
+                    //     <h2 className="userCardWriting">{user.department}</h2>
+                    // </div>
+                    <h1>{user.username}</h1>
                 ))}
             </div>
-            <button onClick={logout}>Logout</button>
+            <button>Logout</button>
+            {/* add the onclick, removed for testing */}
         </div>
     );
 };
