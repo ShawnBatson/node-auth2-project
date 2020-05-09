@@ -4,17 +4,18 @@ import "../App.css";
 
 const UsersList = () => {
     const [users, setUsers] = useState([]);
-    useEffect(() =>
+    useEffect(() => {
         axiosWithAuth()
             .get("/users")
             .then((res) => {
                 console.log("this is in users", res.data);
                 setUsers(res.data);
-            })
-    );
+            });
+    });
 
-    const logout = () => {
+    const logout = (props) => {
         localStorage.removeItem("token");
+        // props.history.push("/login");
     };
 
     return (

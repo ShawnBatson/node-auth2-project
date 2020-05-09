@@ -24,7 +24,7 @@ router.post("/register", async (req, res, next) => {
 });
 
 router.post("/login", async (req, res, next) => {
-    const authErrer = {
+    const authError = {
         message: "Invalid Credentials",
     };
 
@@ -47,25 +47,27 @@ router.post("/login", async (req, res, next) => {
 
         const tokenPayload = {
             userId: user.userId,
-            userRole: "admin",
+            userRole: "normal",
         };
 
         token = jwt.sign(tokenPayload, process.env.JWT_SECRET, {
             expiresIn: "24h",
         });
 
-        res.cookie("token", token);
+        res.cookie(
+            "token",
+            jwt.sign(tokenPayload, process.env.JWT_SECRET, {
+                expiresIn: "24h",
+            })
+        );
 
         res.json({
             message: "Welcome!",
+            token: token,
         });
     } catch (err) {
         next(err);
     }
-});
-
-router.get("/logout", restrict(), (req, res, next) => {
-    jwt.destroy(token);
 });
 
 module.exports = router;

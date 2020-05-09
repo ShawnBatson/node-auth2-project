@@ -10,6 +10,7 @@ export const RegisterForm = (props) => {
     });
 
     const handleChange = (event) => {
+        console.log(event.target.name);
         setRegistration({
             ...registration,
             [event.target.name]: event.target.value,
@@ -21,8 +22,8 @@ export const RegisterForm = (props) => {
         axiosWithAuth()
             .post("/auth/register", registration)
             .then((res) => {
-                console.log("this is in the registration event", res.data);
-                localStorage.setItem("token", res.data.payload);
+                console.log("this is in the registration event", res);
+                localStorage.setItem("token", res.data.token);
                 props.history.push("/users");
             })
             .catch((err) => {
@@ -36,6 +37,7 @@ export const RegisterForm = (props) => {
                 <input
                     className="login"
                     type="text"
+                    name="username"
                     value={register.username}
                     placeholder="Please choose a login name"
                     onChange={handleChange}
@@ -43,6 +45,7 @@ export const RegisterForm = (props) => {
                 <input
                     className="password"
                     type="password"
+                    name="password"
                     value={register.password}
                     placeholder="Please choose a password"
                     onChange={handleChange}
@@ -50,6 +53,7 @@ export const RegisterForm = (props) => {
                 <input
                     className="department"
                     type="text"
+                    name="department"
                     value={register.department}
                     placeholder="Please enter your department"
                     onChange={handleChange}

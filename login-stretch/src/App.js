@@ -15,12 +15,14 @@ function App() {
         <Router>
             <div className="App">
                 <Link to="/login">Login</Link>
-                <Link to="/uesrs">User List</Link>
+                <Link to="/users">User List</Link>
+                <Link to="/register">Register</Link>
 
                 <Switch>
                     <PrivateRoute exact path="/users" component={UsersList} />
                     <Route path="/login" component={LoginForm} />
                     <Route path="/register" component={RegisterForm} />
+                    <Route component={RegisterForm} />
                 </Switch>
             </div>
         </Router>

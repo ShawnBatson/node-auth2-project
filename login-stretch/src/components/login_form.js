@@ -26,7 +26,7 @@ export const LoginForm = (props) => {
             .post("/auth/login", userInfo.credentials)
             .then((res) => {
                 console.log("this is in the login event", res);
-                localStorage.setItem("token", res.data.payload);
+                localStorage.setItem("token", res.data.token);
                 props.history.push("/users");
             })
             .catch((err) => {
@@ -36,7 +36,7 @@ export const LoginForm = (props) => {
 
     return (
         <div>
-            <form onSubmit={login} className="mainForm">
+            <form onSubmit={login} className="Main">
                 <input
                     className="login"
                     type="text"

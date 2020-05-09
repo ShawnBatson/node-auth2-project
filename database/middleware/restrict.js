@@ -11,17 +11,13 @@ function restrict(role = "normal") {
                 return res.status(401).json(authError);
             }
 
-            jwt.verify(
-                token,
-                env.proccess.JWT_SECRET,
-                (err, decodedPayload) => {
-                    if (err || decodedPayload.userRole !== role) {
-                        return res.status(401).json(authError);
-                    }
-                    req.token = decodedPayload;
-                    next();
+            jwt.verify(token, process.env.JWT_SECRET, (err, decodedPayload) => {
+                if (err || decodedPayload.userRole !== role) {
+                    return res.status(401).json(authError);
                 }
-            );
+                req.token = decodedPayload;
+                next();
+            });
         } catch (err) {
             next(err);
         }
